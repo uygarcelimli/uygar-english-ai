@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Uygar English AI — Dark</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>Uygar English AI</h1>
+      <div class="mode">Dark • C1 Trainer</div>
+    </header>
+
+    <main class="main">
+      <section class="left card">
+        <h2>Görevler (Tasks)</h2>
+        <ul id="dialogs"></ul>
+        <div class="controls">
+          <label><input type="checkbox" id="auto-eval" checked> Otomatik değerlendirme (auto)</label>
+          <label><input type="checkbox" id="show-examples"> Show model answers</label>
+        </div>
+      </section>
+
+      <section class="right card">
+        <h2 id="task-title">Select a task</h2>
+        <p id="task-prompt" class="muted">Choose a dialog from the left to start practicing.</p>
+
+        <div class="rec-area">
+          <div class="rec-controls">
+            <button id="start-btn">Start Listening</button>
+            <button id="stop-btn" disabled>Stop</button>
+            <button id="speak-model" disabled>Play Model Answer</button>
+            <button id="clear-btn">Clear</button>
+          </div>
+
+          <label class="label">Your answer (transcript)</label>
+          <textarea id="user-text" rows="6" placeholder="Speak or type your answer here..."></textarea>
+
+          <div class="actions">
+            <button id="evaluate-btn" class="primary">Evaluate</button>
+            <button id="save-unknown" class="secondary">Save unknown words</button>
+            <button id="show-vocab" class="tertiary">Show vocab</button>
+          </div>
+
+          <div id="result" class="result hidden">
+            <h3>Result</h3>
+            <p><strong>Score:</strong> <span id="score-num">0</span>/100</p>
+            <div id="feedback-list"></div>
+          </div>
+
+          <div id="model-answer" class="card hidden">
+            <h3>Model answer</h3>
+            <div id="model-text"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="bottom card">
+      <h3>History (Last attempts)</h3>
+      <ul id="history"></ul>
+      <div class="hint">Mic access: Serve the files via <code>python -m http.server</code> on your computer and open via your iPhone's browser (use same Wi‑Fi and your computer's local IP) OR host on any static hosting. Safari requires HTTPS for mic; localhost is allowed.</div>
+    </aside>
+
+    <script id="dialogs-json" type="application/json">
+{
+  "dialogs": [
+    {
+      "id": "airport_01",
+      "title": "At the airport — check-in and asking about lost luggage",
+      "prompt": "You are a passenger checking in and you realise your luggage didn't arrive. First, greet the desk, explain your situation, ask what steps will be taken and how you'll be contacted. (~2 short paragraphs)",
+      "example_answer": "Hello, I’m checking in — my name is [Your Name]. I believe my luggage did not arrive on the carousel. I checked the tag and the flight number; could you help me locate it? What are the next steps, and how will I be informed when it’s found?"
+    },
+    {
+      "id": "coffee_shop_01",
+      "title": "Ordering coffee — custom order",
+      "prompt": "Order a coffee with special requests (milk alternative, extra hot, and two sugars). Ask about allergens and mention you're in a hurry but polite. (~1 paragraph)",
+      "example_answer": "Hi — could I get a large oat latte, extra hot please, with two sugars? I have a nut allergy, so could you confirm that the milk is nut-free? I’m in a bit of a hurry so thank you very much."
+    },
+    {
+      "id": "job_interview_01",
+      "title": "Job interview — tell me about a time you solved a problem",
+      "prompt": "Describe a past workplace problem you solved, focusing on actions you took and the result. Use advanced linking words and past perfect/simple contrast. (~2 paragraphs)",
+      "example_answer": "In my previous role, our project timeline slipped due to vendor delays. I coordinated cross-functional stand-ups, identified critical path items, renegotiated a phased delivery with the vendor, and pilot-tested key modules in advance. As a result, we delivered the MVP two weeks later than planned but with full core functionality, which improved stakeholder confidence."
+    }
+  ]
+}
+    </script>
+
+  <script src="script.js"></script>
+</body>
+</html>
